@@ -1,3 +1,5 @@
-var ola = "Hello World"
+function somar(num1, num2){
+    return console.log(num1 + num2)
+}
 
-console.log(ola)
+somar(4, 5)
