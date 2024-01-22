@@ -8,3 +8,5 @@ class Aluno {
         this.idade  = idade
     }
 }
+
+let aluno = new Aluno("Diego", 18)
