@@ -11,7 +11,6 @@ class Carro {
       return resultado;
     }
   }
-  
   class Corrida {
     constructor(nome, tipo, distancia, participantes) {
       this.nome = nome;
@@ -23,7 +22,7 @@ class Carro {
   
     iniciarCorrida() {
       let menorTempo = Infinity;
-      
+  
       for (const participante of this.participantes) {
         const tempo = participante.calcularTempoParaDistancia(this.distancia);
         if (tempo < menorTempo) {
@@ -34,6 +33,29 @@ class Carro {
   
       console.log(`A equipe vencedora da corrida em ${this.nome} é: ${this.vencedor}`);
     }
+  
+    verificarMenorTempo() {
+      let menorTempo = Infinity;
+      let vencedorCarro = null;
+  
+      for (const participante of this.participantes) {
+        const tempo = participante.calcularTempoParaDistancia(this.distancia);
+        if (tempo < menorTempo) {
+          menorTempo = tempo;
+          vencedorCarro = participante.nome;
+        }
+      }
+  
+      this.vencedor = vencedorCarro;
+    }
+  
+    exibirVencedor() {
+      if (this.vencedor) {
+        console.log(`O vencedor da corrida em ${this.nome} é: ${this.vencedor}`);
+      } else {
+        console.log(`A corrida em ${this.nome} ainda não foi concluída.`);
+      }
+    }
   }
   
   // Exemplo de uso:
@@ -42,5 +64,10 @@ class Carro {
   const carro3 = new Carro("McLaren", 780, 340, 2.6);
   
   const corridaF1 = new Corrida("Circuito de Monza", "Fórmula 1", 5000, [carro1, carro2, carro3]);
-  corridaF1.iniciarCorrida();
   
+  corridaF1.iniciarCorrida(); // Inicia a corrida e define o vencedor
+  corridaF1.exibirVencedor(); // Exibe o vencedor
+  
+  // Ou, se quiser verificar o vencedor sem iniciar a corrida novamente:
+  corridaF1.verificarMenorTempo();
+  corridaF1.exibirVencedor();
